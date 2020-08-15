@@ -31,7 +31,4 @@ for e in extensions:
         min_name = e
 for i in range(len(dir_list_dict_by_extension[min_name])):
     for j in extensions:
-        try:
-            os.rename(dir_list_dict_by_extension[j][i], get_rename_only_name(dir_list_dict_by_extension[j][i], dir_list_dict_by_extension[min_name][i]))
-        except IndexError:
-            pass
+        os.rename(dir_list_dict_by_extension[j][i], get_rename_only_name(dir_list_dict_by_extension[j][i], dir_list_dict_by_extension[min_name][i]))
