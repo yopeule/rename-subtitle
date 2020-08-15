@@ -13,7 +13,7 @@ for extension in extensions:
 
 for i in dir_list:
     dir_list_dict_by_extension[i.split('.')[-1]].append(i)
-    # 확장자가 없는 파일의 경우는 생각 안한다. 안해. 
+    # 확장자가 없는 파일의 경우는 고려하지 않음
 
 for i in dir_list_dict_by_extension.values():
     i.sort()
