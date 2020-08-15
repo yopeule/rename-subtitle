@@ -1,7 +1,7 @@
 import os, sys
 
-dir_list = [i for i in os.listdir('.') if sys.argv[0].split('\\')[-1] != i]
-
+dir_list = [i for i in os.listdir('.') if sys.argv[0].split('\\')[-1] != i and i != '.git']
+print(dir_list)
 extensions = set() 
 for i in dir_list:
     extensions.add(i.split('.')[-1])
@@ -17,21 +17,19 @@ for i in dir_list:
         if i.split('.')[-1] == extension:
             dir_list_dict_by_extension[extension].append(i)
 
-for i in dir_list_dict_by_extension:
+for i in dir_list_dict_by_extension.values():
     i.sort()
-    # i 가 왜 문자열이라고 하는거지? ??? 아... key 를 순회하는구나...
-# k = ll['a']
+
+print(dir_list_dict_by_extension)
 
 def get_rename_only_name(origin_name, rename_name):
-    return rename_name.split('.')[0:-2] + origin_name.split('.')[-1]
-
+    return '.'.join(rename_name.split('.')[0:-1]) + '.' + origin_name.split('.')[-1]
 extension = [i for i in extensions]
 
 # for i in range(len(ll[0])):
 #     os.rename(ll[ename[0]][i], get_rename_only_name(ll[ename[0]][i], ll[ename[1]][i]))
-
-for i in range(len(dir_list_dict_by_extension[0])):
-    a = extensions.pop()
+a = extensions.pop()
+for i in range(len(dir_list_dict_by_extension[a])):
     for j in extensions:
         os.rename(dir_list_dict_by_extension[j][i], get_rename_only_name(dir_list_dict_by_extension[j][i], dir_list_dict_by_extension[a][i]))
 
