@@ -1,6 +1,6 @@
 import os, sys
-
-dir_list = [i for i in os.listdir('.') if sys.argv[0].split('\\')[-1] != i and i != '.git'] 
+ignore = [sys.argv[0].split('\\')[-1], '.git', '.vscode']
+dir_list = [i for i in os.listdir('.') if i not in ignore] 
 # 자기자신 및 .git 파일을 제외 (그 외에도 제외할 게 많을 수 있지만 일반적으로는 없다고 가정)
 extensions = set() 
 for i in dir_list:
