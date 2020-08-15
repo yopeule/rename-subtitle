@@ -22,13 +22,19 @@ def get_rename_only_name(origin_name, rename_name):
     return '.'.join(rename_name.split('.')[0:-1]) + '.' + origin_name.split('.')[-1]
 
 a = None
-for i in dir_list_dict_by_extension.values():
-    a = len(i)
-    break
 min_name = None
+for i in dir_list_dict_by_extension:
+    a = len(dir_list_dict_by_extension[i])
+    min_name = i
+    break
 for e in extensions:
     if len(dir_list_dict_by_extension[e]) < a:
         min_name = e
 for i in range(len(dir_list_dict_by_extension[min_name])):
     for j in extensions:
-        os.rename(dir_list_dict_by_extension[j][i], get_rename_only_name(dir_list_dict_by_extension[j][i], dir_list_dict_by_extension[min_name][i]))
+        try:
+            os.rename(dir_list_dict_by_extension[j][i], get_rename_only_name(dir_list_dict_by_extension[j][i], dir_list_dict_by_extension[min_name][i]))
+        except IndexError:
+            pass
+        except:
+            pass
