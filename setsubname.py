@@ -2,7 +2,6 @@ import os, sys
 
 dir_list = [i for i in os.listdir('.') if sys.argv[0].split('\\')[-1] != i and i != '.git'] 
 # 자기자신 및 .git 파일을 제외 (그 외에도 제외할 게 많을 수 있지만 일반적으로는 없다고 가정)
-print(dir_list)
 extensions = set() 
 for i in dir_list:
     extensions.add(i.split('.')[-1])
@@ -11,16 +10,13 @@ dir_list_dict_by_extension = {}
 
 for extension in extensions:
     dir_list_dict_by_extension[extension] = []
-# for ename in extend_name:
-#     ll.append([i for i in l if i.split('.')[-1] == ename])
+
 for i in dir_list:
     dir_list_dict_by_extension[i.split('.')[-1]].append(i)
     # 확장자가 없는 파일의 경우는 생각 안한다. 안해. 
 
 for i in dir_list_dict_by_extension.values():
     i.sort()
-
-print(dir_list_dict_by_extension)
 
 def get_rename_only_name(origin_name, rename_name):
     return '.'.join(rename_name.split('.')[0:-1]) + '.' + origin_name.split('.')[-1]
